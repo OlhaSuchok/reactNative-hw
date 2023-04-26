@@ -11,8 +11,8 @@ import {
   Keyboard,
 } from "react-native";
 
-import { LoginScreen } from "./src/Screens/LoginScreen";
-import { RegistrationScreen } from "./src/Screens/RegistrationScreen";
+import { LoginScreen } from "./src/Screens/LoginScreen/LoginScreen";
+import { RegistrationScreen } from "./src/Screens/RegistrationScreen/RegistrationScreen";
 
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -42,16 +42,14 @@ export default function App() {
             style={styles.form}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            {/* <RegistrationScreen
+            <RegistrationScreen
               isShowKeyboard={isShowKeyboard}
               setIsShowKeyboard={setIsShowKeyboard}
-              keyboardHide={keyboardHide}
-            /> */}
-            <LoginScreen
-              isShowKeyboard={isShowKeyboard}
-              setIsShowKeyboard={setIsShowKeyboard}
-              keyboardHide={keyboardHide}
             />
+            {/* <LoginScreen
+              isShowKeyboard={isShowKeyboard}
+              setIsShowKeyboard={setIsShowKeyboard}
+            /> */}
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
