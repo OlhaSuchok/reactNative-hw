@@ -1,8 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   form: {
     alignItems: "center",
+    justifyContent: "center",
     paddingTop: 32,
     height: 549,
     width: "100%",
@@ -11,6 +16,18 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+  },
+  formWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 549,
+    width: "100%",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    resizeMode: "cover",
   },
   avatar: {},
   avatarWrapper: {
@@ -34,7 +51,6 @@ export const styles = StyleSheet.create({
     color: "#212121",
     fontFamily: "Roboto - medium",
     fontStyle: "normal",
-    fontWeight: 500,
     fontSize: 30,
   },
   input: {
@@ -63,7 +79,6 @@ export const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
   buttonShowPasswordWrapper: {
@@ -82,14 +97,12 @@ export const styles = StyleSheet.create({
     color: "#1B4371",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
   registrationLink: {
     color: "#1B4371",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
 });

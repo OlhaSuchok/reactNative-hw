@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ImageBackground,
+  Platform,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./RegistrationScreen.styled";
 
-export const RegistrationScreen = ({ isShowKeyboard, setIsShowKeyboard }) => {
+export const RegistrationScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const nameHandler = (text) => setName(text);
   const emailHandler = (text) => setEmail(text);
@@ -33,64 +45,89 @@ export const RegistrationScreen = ({ isShowKeyboard, setIsShowKeyboard }) => {
     setShowPassword(showPassword ? false : true);
   };
 
+  const keyboardHide = () => {
+    setIsShowKeyboard(true);
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.form}>
-      <View style={styles.avatarWrapper}>
-        <View style={styles.avatar}></View>
-        <TouchableOpacity style={styles.avatarButton} activeOpacity={0.7}>
-          <AntDesign
-            style={styles.avatarIcon}
-            name="pluscircleo"
-            size={26}
-            color="#FF6C00"
-          />
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.title}>SIGN UP</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={nameHandler}
-        onFocus={() => setIsShowKeyboard(true)}
-        maxLength={20}
-      ></TextInput>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={emailHandler}
-        onFocus={() => setIsShowKeyboard(true)}
-        maxLength={20}
-      ></TextInput>
-      <View style={styles.buttonShowPasswordWrapper}>
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={password}
-          onChangeText={passwordHandler}
-          secureTextEntry={showPassword}
-          onFocus={() => setIsShowKeyboard(true)}
-          maxLength={20}
-        ></TextInput>
-        <TouchableOpacity
-          style={styles.buttonShowPassword}
-          activeOpacity={0.7}
-          onPress={onShowPassword}
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.image}
+          source={require("../../../assets/images/background1x.jpg")}
         >
-          <Text style={styles.buttonShowPasswordText}>Show</Text>
-        </TouchableOpacity>
+          <KeyboardAvoidingView
+            style={styles.formWrapper}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            <View style={styles.form}>
+              <View style={styles.avatarWrapper}>
+                <View style={styles.avatar}></View>
+                <TouchableOpacity
+                  style={styles.avatarButton}
+                  activeOpacity={0.7}
+                >
+                  <AntDesign
+                    style={styles.avatarIcon}
+                    name="pluscircleo"
+                    size={26}
+                    color="#FF6C00"
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.title}>SIGN UP</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Name"
+                value={name}
+                onChangeText={nameHandler}
+                onFocus={() => setIsShowKeyboard(true)}
+                maxLength={20}
+              ></TextInput>
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                onChangeText={emailHandler}
+                onFocus={() => setIsShowKeyboard(true)}
+                maxLength={20}
+              ></TextInput>
+              <View style={styles.buttonShowPasswordWrapper}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  value={password}
+                  onChangeText={passwordHandler}
+                  secureTextEntry={showPassword}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  maxLength={20}
+                ></TextInput>
+                <TouchableOpacity
+                  style={styles.buttonShowPassword}
+                  activeOpacity={0.7}
+                  onPress={onShowPassword}
+                >
+                  <Text style={styles.buttonShowPasswordText}>Show</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                style={{
+                  ...styles.button,
+                  marginTop: isShowKeyboard ? 18 : 27,
+                }}
+                activeOpacity={0.7}
+                onPress={onLogin}
+              >
+                <Text style={styles.buttonText}>SIGN UP</Text>
+              </TouchableOpacity>
+              <Text style={styles.registrationLink}>
+                Already have an account? Sign in
+              </Text>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
       </View>
-      <TouchableOpacity
-        style={{ ...styles.button, marginTop: isShowKeyboard ? 18 : 27 }}
-        activeOpacity={0.7}
-        onPress={onLogin}
-      >
-        <Text style={styles.buttonText}>SIGN UP</Text>
-      </TouchableOpacity>
-      <Text style={styles.registrationLink}>
-        Already have an account? Sign in
-      </Text>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };

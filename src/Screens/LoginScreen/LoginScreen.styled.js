@@ -12,12 +12,27 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
+  formWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 549,
+    width: "100%",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    resizeMode: "cover",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   title: {
     marginTop: 0,
     marginBottom: 33,
     fontFamily: "Roboto - medium",
     fontStyle: "normal",
-    fontWeight: 500,
     fontSize: 30,
     color: "#212121",
   },
@@ -48,7 +63,6 @@ export const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
   buttonShowPasswordWrapper: {
@@ -67,14 +81,12 @@ export const styles = StyleSheet.create({
     color: "#1B4371",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
   registrationLink: {
     color: "#1B4371",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
   },
 });
