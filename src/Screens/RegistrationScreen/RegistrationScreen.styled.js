@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   avatarWrapper: {
     position: "relative",
     marginBottom: 32,
-    marginTop: -95,
+    marginTop: -170,
     width: 120,
     height: 120,
     borderRadius: 16,

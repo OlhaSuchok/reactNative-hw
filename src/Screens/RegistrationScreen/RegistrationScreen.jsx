@@ -12,9 +12,12 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+
+import { MainButton } from "../../components/MainButton/MainButton";
 import { styles } from "./RegistrationScreen.styled";
 
-export const RegistrationScreen = () => {
+export const RegistrationScreen = ({ navigation }) => {
+  console.log("navigation register", navigation);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -111,19 +114,20 @@ export const RegistrationScreen = () => {
                   <Text style={styles.buttonShowPasswordText}>Show</Text>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={{
-                  ...styles.button,
-                  marginTop: isShowKeyboard ? 18 : 27,
-                }}
-                activeOpacity={0.7}
-                onPress={onLogin}
-              >
-                <Text style={styles.buttonText}>SIGN UP</Text>
+              <MainButton
+                isShowKeyboard={isShowKeyboard}
+                onLogin={onLogin}
+                text={"SIGN UP"}
+                color={"#FFFFFF"}
+                backgroundColor={"#FF6C00"}
+                mt={0}
+                mb={16}
+              />
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.registrationLink}>
+                  Already have an account? Sign in
+                </Text>
               </TouchableOpacity>
-              <Text style={styles.registrationLink}>
-                Already have an account? Sign in
-              </Text>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

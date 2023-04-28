@@ -11,9 +11,11 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
+
+import { MainButton } from "../../components/MainButton/MainButton";
 import { styles } from "./LoginScreen.styled";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -85,19 +87,20 @@ export const LoginScreen = () => {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={{
-                  ...styles.button,
-                  marginTop: isShowKeyboard ? 18 : 27,
-                }}
-                activeOpacity={0.7}
-                onPress={onLogin}
-              >
-                <Text style={styles.buttonText}>SIGN IN</Text>
+              <MainButton
+                isShowKeyboard={isShowKeyboard}
+                onLogin={onLogin}
+                text={"SIGN IN"}
+                color={"#FFFFFF"}
+                backgroundColor={"#FF6C00"}
+                mt={0}
+                mb={16}
+              />
+              <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                <Text style={styles.registrationLink}>
+                  Don't have an account? Sign up
+                </Text>
               </TouchableOpacity>
-              <Text style={styles.registrationLink}>
-                Don't have an account? Sign up
-              </Text>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
