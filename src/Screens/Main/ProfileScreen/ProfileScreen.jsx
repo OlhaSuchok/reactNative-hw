@@ -15,8 +15,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { Footer } from "../../../components/Footer/Footer";
-
 import { styles } from "./ProfileScreen.styled";
 
 export const ProfileScreen = ({ navigation }) => {
@@ -172,7 +170,6 @@ export const ProfileScreen = ({ navigation }) => {
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
-        <Footer navigation={navigation} />
       </View>
     </TouchableWithoutFeedback>
   );

@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   form: {
-    height: 549,
+    height: 620,
     width: "100%",
     backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 25,
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   avatarWrapper: {
     marginRight: "auto",
     marginLeft: "auto",
-    marginBottom: 32,
+    marginBottom: 30,
     width: 120,
     height: 120,
     borderRadius: 16,
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   title: {
     marginRight: "auto",
     marginLeft: "auto",
-    marginBottom: 32,
+    marginBottom: 30,
     color: "#212121",
     fontFamily: "Roboto - medium",
     fontStyle: "normal",

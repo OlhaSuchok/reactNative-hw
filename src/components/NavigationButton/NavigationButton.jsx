@@ -11,7 +11,7 @@ export const NavigationButton = ({ navigation }) => {
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate("Posts")}
+        // onPress={() => navigation.navigate("Posts")}
       >
         <AntDesign
           name="appstore-o"
@@ -23,14 +23,14 @@ export const NavigationButton = ({ navigation }) => {
       <TouchableOpacity
         style={styles.buttonPlus}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate("CreatePosts")}
+        // onPress={() => navigation.navigate("CreatePosts")}
       >
         <Feather name="plus" size={24} color="#FFFFFF" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate("Profile")}
+        // onPress={() => navigation.navigate("Profile")}
       >
         <Feather
           name="user"
