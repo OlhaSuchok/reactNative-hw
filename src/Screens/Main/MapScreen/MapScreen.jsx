@@ -1,6 +1,7 @@
 import React from "react";
-import { styles } from "./MapScreenn.styled";
+import { styles } from "./MapScreen.styled";
+import { View } from "react-native";
 
-export const MapScreenn = () => {
-  return <></>;
+export const MapScreen = () => {
+  return <View>MapScreen</View>;
 };

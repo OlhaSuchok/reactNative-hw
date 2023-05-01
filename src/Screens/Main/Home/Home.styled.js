@@ -19,4 +19,13 @@ export const styles = StyleSheet.create({
     paddingTop: 0,
     borderRadius: 35,
   },
+  exitButton: {
+    position: "absolute",
+    right: 16,
+  },
+  exitOnPostButton: {
+    position: "absolute",
+    left: 16,
+  },
+  title: {},
 });

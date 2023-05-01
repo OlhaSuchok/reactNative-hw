@@ -13,11 +13,10 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
 } from "react-native";
+
 import { AntDesign } from "@expo/vector-icons";
 
-import { Header } from "../../../components/Header/Header";
 import { Comment } from "../../../components/Comment/Comment";
-
 import { styles } from "./CommentsScreen.styled";
 
 const commentsList = [
@@ -31,21 +30,16 @@ const commentsList = [
     text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
     data: Date.now().toString(),
   },
-  {
-    id: 3,
-    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: Date.now().toString(),
-  },
-  {
-    id: 4,
-    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: Date.now().toString(),
-  },
-  {
-    id: 5,
-    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: Date.now().toString(),
-  },
+  // {
+  //   id: 3,
+  //   text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
+  //   data: Date.now().toString(),
+  // },
+  // {
+  //   id: 4,
+  //   text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
+  //   data: Date.now().toString(),
+  // },
 ];
 
 export const CommentsScreen = ({ navigation }) => {
@@ -83,21 +77,24 @@ export const CommentsScreen = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
-      <ScrollView style={styles.container}>
-        <Header navigation={navigation} title={"COMMENTS"} />
+      <View style={styles.container}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flexGrow: 1 }}
+          style={{ flexGrow: 1, paddingTop: 32 }}
         >
-          <View style={styles.imageWrapper}></View>
-          <FlatList
-            style={styles.comments}
-            keyExtractor={(item) => item.id.toString()}
-            data={comments}
-            renderItem={({ item }) => (
-              <Comment comment={item} onRemove={removeCommen} />
-            )}
-          />
+          <View style={styles.commentsWrp}>
+            <View style={styles.imageWrapper}></View>
+            <ScrollView>
+              <FlatList
+                style={styles.comments}
+                keyExtractor={(item) => item.id.toString()}
+                data={comments}
+                renderItem={({ item }) => (
+                  <Comment comment={item} onRemove={removeCommen} />
+                )}
+              />
+            </ScrollView>
+          </View>
           <View style={styles.button}>
             <TextInput
               placeholder="Comment..."
@@ -115,7 +112,7 @@ export const CommentsScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
-      </ScrollView>
+      </View>
     </TouchableWithoutFeedback>
   );
 };

@@ -13,7 +13,6 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { Header } from "../../../components/Header/Header";
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { Line } from "../../../components/Line/Line";
 
@@ -30,7 +29,6 @@ export const CreatePostScreen = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
-        <Header navigation={navigation} title={"CREATE A POST"} />
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flexGrow: 1 }}

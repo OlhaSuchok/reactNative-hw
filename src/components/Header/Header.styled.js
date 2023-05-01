@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Roboto - medium",
     fontStyle: "normal",
     fontSize: 17,
+    textAlign: "center",
   },
   exitButton: {
     position: "absolute",

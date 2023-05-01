@@ -7,8 +7,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 16,
-    // marginHorizontal: 16,
-    // marginVertical: 16,
   },
   imageWrapper: {
     justifyContent: "center",
@@ -22,8 +20,10 @@ export const styles = StyleSheet.create({
     borderColor: "#E8E8E8",
     marginBottom: 8,
   },
-  comments: {
+  commentsWrp: {
     flexGrow: 1,
+  },
+  comments: {
     paddingTop: 32,
   },
   button: {

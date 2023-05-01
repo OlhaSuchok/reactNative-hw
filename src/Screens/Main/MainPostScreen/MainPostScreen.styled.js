@@ -54,4 +54,22 @@ export const styles = StyleSheet.create({
   posts: {
     flexGrow: 1,
   },
+  buttonPlus: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: 40,
+    paddingBottom: 0,
+    paddingTop: 0,
+    borderRadius: 35,
+  },
+  exitButton: {
+    position: "absolute",
+    right: 16,
+  },
+  exitOnPostButton: {
+    position: "absolute",
+    left: 16,
+  },
 });
