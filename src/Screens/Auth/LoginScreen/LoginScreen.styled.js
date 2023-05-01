@@ -83,7 +83,19 @@ export const styles = StyleSheet.create({
     fontStyle: "normal",
     fontSize: 16,
   },
+  linkWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   registrationLink: {
+    marginRight: 5,
+    color: "#1B4371",
+    fontFamily: "Roboto - regular",
+    fontStyle: "normal",
+    fontSize: 16,
+  },
+  link: {
     color: "#1B4371",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",

@@ -4,7 +4,9 @@ import { useFonts } from "expo-font";
 import { useRoute } from "./router";
 
 export default function App() {
-  const routing = useRoute(1);
+  // const routing = useRoute(false);
+  const routing = useRoute(true);
+
   const [fontsLoaded] = useFonts({
     "Roboto - regular": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
     "Roboto - medium": require("./assets/fonts/Roboto/Roboto-Medium.ttf"),

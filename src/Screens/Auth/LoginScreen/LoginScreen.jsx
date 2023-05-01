@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-// import { MainButton } from "../../../components/MainButton/MainButton";
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { styles } from "./LoginScreen.styled";
 
@@ -52,7 +51,6 @@ export const LoginScreen = ({ navigation }) => {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          // source={require("../../../assets/images/background1x.jpg")}
           source={require("../../../../assets/images/background1x.jpg")}
         >
           <KeyboardAvoidingView
@@ -98,11 +96,19 @@ export const LoginScreen = ({ navigation }) => {
                 mt={0}
                 mb={16}
               />
-              <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+              <View style={styles.linkWrapper}>
                 <Text style={styles.registrationLink}>
-                  Don't have an account? Sign up
+                  Don't have an account?
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate("Register")}
+                  >
+                    Sign up
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

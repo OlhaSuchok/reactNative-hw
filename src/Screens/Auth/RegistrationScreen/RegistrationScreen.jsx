@@ -58,7 +58,6 @@ export const RegistrationScreen = ({ navigation }) => {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          // source={require("../../../assets/images/background1x.jpg")}
           source={require("../../../../assets/images/background1x.jpg")}
         >
           <KeyboardAvoidingView
@@ -124,11 +123,19 @@ export const RegistrationScreen = ({ navigation }) => {
                 mt={0}
                 mb={16}
               />
-              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <View style={styles.linkWrapper}>
                 <Text style={styles.registrationLink}>
-                  Already have an account? Sign in
+                  Already have an account?
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity>
+                  <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate("Login")}
+                  >
+                    Sign in
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
