@@ -1,12 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { TouchableOpacity, Text } from "react-native";
 
 import { styles } from "./MainButton.styled";
 
 export const MainButton = ({
-  isShowKeyboard,
   onLogin,
   text,
   color,

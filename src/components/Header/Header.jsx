@@ -5,9 +5,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { Line } from "../Line/Line";
 import { styles } from "./Header.styled";
 
-export const Header = ({ mt, mb, title, navigation }) => {
+export const Header = ({ title, navigation }) => {
   return (
-    // <View style={{ ...styles.line, marginTop: mt, marginBottom: mb }}></View>
     <View>
       <View style={styles.header}>
         <TouchableOpacity

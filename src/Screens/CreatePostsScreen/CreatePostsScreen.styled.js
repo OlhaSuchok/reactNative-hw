@@ -7,27 +7,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
   },
-  header: {
-    position: "relative",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 50,
-    paddingBottom: 10,
-  },
-  titleWrapper: {},
-  title: {
-    marginBottom: 0,
-    color: "#212121",
-    fontFamily: "Roboto - medium",
-    fontStyle: "normal",
-    fontSize: 17,
-  },
-  exitButton: {
-    position: "absolute",
-    left: 0,
-    bottom: 10,
-  },
   imageButton: {
     justifyContent: "center",
     alignItems: "center",
@@ -38,11 +17,6 @@ export const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
-  },
-  headerLine: {
-    width: "100%",
-    height: 0.5,
-    backgroundColor: "#BDBDBD",
   },
   imageWrapper: {
     justifyContent: "center",

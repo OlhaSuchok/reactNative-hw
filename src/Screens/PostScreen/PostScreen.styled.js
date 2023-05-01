@@ -53,26 +53,4 @@ export const styles = StyleSheet.create({
   posts: {
     flexGrow: 1,
   },
-  footer: {
-    justifyContent: "flex-end",
-  },
-  navigation: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 10,
-    paddingBottom: 32,
-  },
-  button: {},
-  buttonPlus: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 13,
-    paddingBottom: 13,
-    marginLeft: 42,
-    marginRight: 42,
-
-    borderRadius: 35,
-    backgroundColor: "#FF6C00",
-  },
 });

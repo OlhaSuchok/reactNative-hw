@@ -11,7 +11,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { Header } from "../../components/Header/Header";
@@ -25,17 +24,6 @@ export const CreatePostScreen = ({ navigation }) => {
   const keyboardHide = () => {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
-  };
-
-  const onLogin = () => {
-    // if (email.trim() === "" || password.trim() === "") {
-    //   Alert.alert("Fill in all fields!");
-    // } else {
-    //   Alert.alert("Hello!");
-    //   console.log(`'email:', ${email}, 'password:', ${password},`);
-    //   setEmail("");
-    //   setPassword("");
-    // }
   };
 
   return (
@@ -95,7 +83,7 @@ export const CreatePostScreen = ({ navigation }) => {
               <Line mt={0} mb={32} />
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                onLogin={onLogin}
+                // onLogin={onLogin}
                 text={"PUBLISH"}
                 color={"#BDBDBD"}
                 backgroundColor={"#F6F6F6"}

@@ -42,7 +42,6 @@ export const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
-
     right: 16,
     width: 34,
     height: 34,

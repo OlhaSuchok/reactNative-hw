@@ -12,10 +12,6 @@ export const styles = StyleSheet.create({
   buttonPlus: {
     justifyContent: "center",
     alignItems: "center",
-    // paddingLeft: 30,
-    // paddingRight: 30,
-    // paddingTop: 13,
-    // paddingBottom: 13,
     marginLeft: 42,
     marginRight: 42,
     width: 70,

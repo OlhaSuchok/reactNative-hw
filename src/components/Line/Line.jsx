@@ -1,7 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { View } from "react-native";
 
 import { styles } from "./Line.styled";
 

@@ -1,12 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
   header: {
     position: "relative",
     flexDirection: "row",
@@ -27,82 +21,5 @@ export const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     bottom: 10,
-  },
-  imageButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 60,
-    height: 60,
-    borderWidth: 1,
-    borderRadius: 50,
-    borderStyle: "solid",
-    borderColor: "transparent",
-    backgroundColor: "#FFFFFF",
-  },
-  headerLine: {
-    width: "100%",
-    height: 0.5,
-    backgroundColor: "#BDBDBD",
-  },
-  imageWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: 240,
-    backgroundColor: "#E8E8E8",
-    borderWidth: 1,
-    borderRadius: 8,
-    borderStyle: "solid",
-    borderColor: "#E8E8E8",
-    marginBottom: 8,
-  },
-  post: {},
-  imageTextWraper: {
-    color: "#BDBDBD",
-    fontFamily: "Roboto - regular",
-    fontStyle: "normal",
-    fontSize: 16,
-  },
-  imageText: {
-    marginBottom: 48,
-    color: "#BDBDBD",
-    fontFamily: "Roboto - regular",
-    fontStyle: "normal",
-    fontSize: 16,
-  },
-  form: {},
-  input: {
-    paddingBottom: 15,
-    color: "#BDBDBD",
-    fontFamily: "Roboto - regular",
-    fontStyle: "normal",
-    fontSize: 16,
-  },
-  localityWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  localityIcon: {
-    paddingBottom: 15,
-    marginRight: 4,
-  },
-  footer: {},
-  navigation: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 10,
-    paddingBottom: 32,
-  },
-  buttonPlus: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 42,
-    marginRight: 42,
-    width: 70,
-    height: 40,
-
-    borderRadius: 35,
-    backgroundColor: "#F6F6F6",
   },
 });

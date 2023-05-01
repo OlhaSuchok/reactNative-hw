@@ -11,7 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Line } from "../../components/Line/Line";
 import { Footer } from "../../components/Footer/Footer";
-import { NavigationButton } from "../../components/NavigationButton/NavigationButton";
 import { styles } from "./PostScreen.styled";
 
 export const PostScreen = ({ navigation }) => {
