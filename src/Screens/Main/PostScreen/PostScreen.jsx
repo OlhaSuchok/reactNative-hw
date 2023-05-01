@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { Line } from "../../components/Line/Line";
-import { Footer } from "../../components/Footer/Footer";
+import { Line } from "../../../components/Line/Line";
+import { Footer } from "../../../components/Footer/Footer";
 import { styles } from "./PostScreen.styled";
 
 export const PostScreen = ({ navigation }) => {
@@ -45,7 +45,7 @@ export const PostScreen = ({ navigation }) => {
         <View style={styles.info}>
           <View style={styles.image}>
             <Image
-              source={require("../../../assets/images/avatarPosts1x.jpg")}
+              source={require("../../../../assets/images/avatarPosts1x.jpg")}
             />
           </View>
           <View style={styles.textWrapper}>

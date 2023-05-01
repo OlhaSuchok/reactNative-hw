@@ -13,9 +13,10 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { Header } from "../../components/Header/Header";
-import { MainButton } from "../../components/MainButton/MainButton";
-import { Line } from "../../components/Line/Line";
+import { Header } from "../../../components/Header/Header";
+import { MainButton } from "../../../components/MainButton/MainButton";
+import { Line } from "../../../components/Line/Line";
+
 import { styles } from "./CreatePostsScreen.styled";
 
 export const CreatePostScreen = ({ navigation }) => {

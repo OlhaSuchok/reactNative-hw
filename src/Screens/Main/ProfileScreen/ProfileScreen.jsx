@@ -15,7 +15,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../../components/Footer/Footer";
+
 import { styles } from "./ProfileScreen.styled";
 
 export const ProfileScreen = ({ navigation }) => {
@@ -31,7 +32,7 @@ export const ProfileScreen = ({ navigation }) => {
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          source={require("../../../assets/images/background1x.jpg")}
+          source={require("../../../../assets/images/background1x.jpg")}
         >
           <KeyboardAvoidingView
             style={styles.formWrapper}

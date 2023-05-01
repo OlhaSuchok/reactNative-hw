@@ -1,15 +1,19 @@
 import React from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useFonts } from "expo-font";
-import { LoginScreen } from "./src/Screens/LoginScreen/LoginScreen";
-import { RegistrationScreen } from "./src/Screens/RegistrationScreen/RegistrationScreen";
-import { PostScreen } from "./src/Screens/PostScreen/PostScreen";
-import { CreatePostScreen } from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
-import { CommentsScreen } from "./src/Screens/CommentsScreen/CommentsScreen";
-import { ProfileScreen } from "./src/Screens/ProfileScreen/ProfileScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const Stack = createStackNavigator();
+import { useFonts } from "expo-font";
+import { LoginScreen } from "./src/Screens/Auth/LoginScreen/LoginScreen";
+import { RegistrationScreen } from "./src/Screens/Auth/RegistrationScreen/RegistrationScreen";
+import { PostScreen } from "./src/Screens/Main/PostScreen/PostScreen";
+import { CreatePostScreen } from "./src/Screens/Main/CreatePostsScreen/CreatePostsScreen";
+import { CommentsScreen } from "./src/Screens/Main/CommentsScreen/CommentsScreen";
+import { ProfileScreen } from "./src/Screens/Main/ProfileScreen/ProfileScreen";
+
+const AuthStack = createStackNavigator();
+const MainStack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,38 +29,38 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen
+      <AuthStack.Navigator>
+        {/* <AuthStack.Screen
           name="Register"
           component={RegistrationScreen}
           options={{ headerShown: false }}
-        /> */}
-        {/* <Stack.Screen
+        />
+        <AuthStack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
         /> */}
-        <Stack.Screen
+        <AuthStack.Screen
           name="Posts"
           component={PostScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        <AuthStack.Screen
           name="CreatePosts"
           component={CreatePostScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        <AuthStack.Screen
           name="Comments"
           component={CommentsScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        <AuthStack.Screen
           name="Profile"
           component={ProfileScreen}
           options={{ headerShown: false }}
         />
-      </Stack.Navigator>
+      </AuthStack.Navigator>
     </NavigationContainer>
   );
 }

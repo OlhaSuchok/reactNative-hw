@@ -15,8 +15,9 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-import { Header } from "../../components/Header/Header";
-import { Comment } from "../../components/Comment/Comment";
+import { Header } from "../../../components/Header/Header";
+import { Comment } from "../../../components/Comment/Comment";
+
 import { styles } from "./CommentsScreen.styled";
 
 const commentsList = [
