@@ -17,6 +17,7 @@ const MainTab = createBottomTabNavigator();
 export const Home = () => {
   return (
     <MainTab.Navigator
+      initialRouteName="Posts"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {

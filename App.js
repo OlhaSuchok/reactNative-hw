@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { useRoute } from "./router";
 
 export default function App() {
-  // const routing = useRoute(false);
-  const routing = useRoute(true);
+  const routing = useRoute(false);
 
   const [fontsLoaded] = useFonts({
     "Roboto - regular": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),

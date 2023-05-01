@@ -38,6 +38,7 @@ export const RegistrationScreen = ({ navigation }) => {
         `'name:', ${name}, 'email:', ${email}, 'password:', ${password},`
       );
 
+      navigation.navigate("Home");
       setName("");
       setEmail("");
       setPassword("");

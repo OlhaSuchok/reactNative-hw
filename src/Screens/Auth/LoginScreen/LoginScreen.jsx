@@ -31,7 +31,7 @@ export const LoginScreen = ({ navigation }) => {
       Alert.alert("Hello!");
 
       console.log(`'email:', ${email}, 'password:', ${password},`);
-
+      navigation.navigate("Home");
       setEmail("");
       setPassword("");
     }
