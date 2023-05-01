@@ -10,6 +10,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Line } from "../../components/Line/Line";
+import { Footer } from "../../components/Footer/Footer";
 import { NavigationButton } from "../../components/NavigationButton/NavigationButton";
 import { styles } from "./PostScreen.styled";
 
@@ -54,10 +55,7 @@ export const PostScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.posts}></View>
-        <View style={styles.footer}>
-          <Line />
-          <NavigationButton navigation={navigation} />
-        </View>
+        <Footer navigation={navigation} />
       </View>
     </TouchableWithoutFeedback>
   );

@@ -6,6 +6,8 @@ import { LoginScreen } from "./src/Screens/LoginScreen/LoginScreen";
 import { RegistrationScreen } from "./src/Screens/RegistrationScreen/RegistrationScreen";
 import { PostScreen } from "./src/Screens/PostScreen/PostScreen";
 import { CreatePostScreen } from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
+import { CommentsScreen } from "./src/Screens/CommentsScreen/CommentsScreen";
+import { ProfileScreen } from "./src/Screens/ProfileScreen/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +16,7 @@ export default function App() {
     "Roboto - regular": require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
     "Roboto - medium": require("./assets/fonts/Roboto/Roboto-Medium.ttf"),
     "Roboto - bold": require("./assets/fonts/Roboto/Roboto-Bold.ttf"),
+    "Inter - Medium": require("./assets/fonts/Inter/Inter-Medium.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -43,11 +46,16 @@ export default function App() {
           component={CreatePostScreen}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
+          name="Comments"
+          component={CommentsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Profile"
           component={ProfileScreen}
           options={{ headerShown: false }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
