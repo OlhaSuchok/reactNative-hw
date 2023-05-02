@@ -7,11 +7,7 @@ import { EvilIcons } from "@expo/vector-icons";
 
 import { styles } from "./PostItem.styled";
 
-export const PostItem = ({ comment, onRemove, item, navigation }) => {
-  const longPressHandler = () => {
-    onRemove(comment.id);
-  };
-
+export const PostItem = ({ item, navigation }) => {
   const onCommentPressHandler = () => {
     navigation.navigate("Comments");
   };
@@ -24,7 +20,7 @@ export const PostItem = ({ comment, onRemove, item, navigation }) => {
     <View style={styles.scr}>
       <Image style={styles.postPhoto} source={{ uri: item.photo }} />
       <View style={styles.postDataWrapper}>
-        <Text style={styles.postName}>Sunset</Text>
+        <Text style={styles.postName}>{item.title}</Text>
         <View style={styles.postData}>
           <View style={styles.postData}>
             <View style={{ ...styles.postInfoWrapper, marginRight: 27 }}>
@@ -86,7 +82,7 @@ export const PostItem = ({ comment, onRemove, item, navigation }) => {
                 textDecorationLine: "underline",
               }}
             >
-              Ukraine
+              {item.location}
             </Text>
           </View>
         </View>

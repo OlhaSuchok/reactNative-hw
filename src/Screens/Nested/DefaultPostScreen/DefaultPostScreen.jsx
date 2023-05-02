@@ -17,8 +17,20 @@ export const DefaultPostScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     if (route.params) {
-      const { photo } = route?.params;
-      setPosts((prevState) => [...prevState, route.params]);
+      const { photo, title, location, locationData } = route.params;
+      setPosts((prevState) => [
+        ...prevState,
+        {
+          id: Date.now().toString(),
+          title: title,
+          photo: photo,
+          location: location,
+          locationData: {
+            latitude: locationData.coords.latitude,
+            longitude: locationData.coords.longitude,
+          },
+        },
+      ]);
     }
   }, [route.params]);
 
@@ -44,7 +56,7 @@ export const DefaultPostScreen = ({ route, navigation }) => {
         <FlatList
           style={styles.posts}
           data={posts}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(index) => index.toString()}
           renderItem={({ item }) => (
             <PostItem item={item} navigation={navigation} />
           )}

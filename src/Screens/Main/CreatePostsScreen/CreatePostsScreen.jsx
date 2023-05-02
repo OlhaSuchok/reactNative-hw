@@ -9,6 +9,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  Alert,
   TouchableWithoutFeedback,
 } from "react-native";
 
@@ -25,12 +26,14 @@ import { styles } from "./CreatePostsScreen.styled";
 export const CreatePostScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [camera, setCamera] = useState(null);
+  const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState("");
+  const [location, setLocation] = useState("");
+  const [locationData, setLocationData] = useState("");
 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      console.log("status", status);
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
@@ -45,16 +48,25 @@ export const CreatePostScreen = ({ navigation }) => {
 
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
-    const location = await Location.getCurrentPositionAsync({});
+    const locationData = await Location.getCurrentPositionAsync({});
 
     setPhoto(photo.uri);
+    setLocationData(locationData);
   };
 
   const sendPost = () => {
-    if (photo) {
-      console.log("navigation", navigation);
-      navigation.navigate("DefaultPost", { photo });
+    if (!photo || !title || !location) {
+      return Alert.alert("Fill in all fields");
     }
+
+    navigation.navigate("DefaultPost", {
+      photo,
+      title,
+      location,
+      locationData,
+    });
+    setTitle("");
+    setLocation("");
   };
 
   return (
@@ -100,6 +112,8 @@ export const CreatePostScreen = ({ navigation }) => {
               <TextInput
                 style={styles.createPostInput}
                 placeholder="Name..."
+                onChangeText={setTitle}
+                value={title}
                 onFocus={() => setIsShowKeyboard(true)}
               />
               <Line mt={0} mb={32} />
@@ -113,6 +127,8 @@ export const CreatePostScreen = ({ navigation }) => {
                 <TextInput
                   style={styles.createPostInput}
                   placeholder="Locality..."
+                  onChangeText={setLocation}
+                  value={location}
                   onFocus={() => setIsShowKeyboard(true)}
                 />
               </View>
