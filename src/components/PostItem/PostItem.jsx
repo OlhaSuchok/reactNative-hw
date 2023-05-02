@@ -4,7 +4,6 @@ import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./PostItem.styled";
 

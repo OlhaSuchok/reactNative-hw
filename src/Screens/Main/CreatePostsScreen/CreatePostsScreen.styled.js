@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    // borderStyle: "solid",
     borderColor: "#E8E8E8",
   },
   takePhotoContainer: {
@@ -42,7 +41,6 @@ export const styles = StyleSheet.create({
     height: 60,
     borderWidth: 1,
     borderRadius: 50,
-    // borderStyle: "solid",
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
   },

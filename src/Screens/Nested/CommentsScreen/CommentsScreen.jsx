@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { formatDistance, subDays, format } from "date-fns";
+import { format } from "date-fns";
 import {
   View,
   TouchableOpacity,
   Keyboard,
-  Image,
-  Text,
   TextInput,
   KeyboardAvoidingView,
   Platform,
@@ -28,16 +26,6 @@ const commentsList = [
   },
   {
     id: 2,
-    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: format(Date.now(), "PPpp"),
-  },
-  {
-    id: 3,
-    text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
-    data: format(Date.now(), "PPpp"),
-  },
-  {
-    id: 4,
     text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
     data: format(Date.now(), "PPpp"),
   },
@@ -86,20 +74,18 @@ export const CommentsScreen = ({ navigation }) => {
         >
           <View style={styles.commentsWrp}>
             <View style={styles.imageWrapper}></View>
-            <ScrollView>
-              <FlatList
-                style={styles.comments}
-                data={comments}
-                keyExtractor={(item, index) => item.id.toString()}
-                renderItem={({ item }) => (
-                  <CommentItem
-                    item={item}
-                    onRemove={removeCommen}
-                    navigation={navigation}
-                  />
-                )}
-              />
-            </ScrollView>
+            <FlatList
+              style={styles.comments}
+              data={comments}
+              keyExtractor={(item, index) => item.id.toString()}
+              renderItem={({ item }) => (
+                <CommentItem
+                  item={item}
+                  onRemove={removeCommen}
+                  navigation={navigation}
+                />
+              )}
+            />
           </View>
           <View style={styles.button}>
             <TextInput

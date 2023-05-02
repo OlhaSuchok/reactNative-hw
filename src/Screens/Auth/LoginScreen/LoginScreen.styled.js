@@ -46,7 +46,6 @@ export const styles = StyleSheet.create({
 
     borderWidth: 1,
     borderRadius: 8,
-    borderStyle: "solid",
     borderColor: "#E8E8E8",
   },
   button: {

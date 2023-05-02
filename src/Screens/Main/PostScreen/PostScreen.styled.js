@@ -4,6 +4,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   header: {
     position: "relative",
@@ -32,7 +34,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 32,
     paddingTop: 32,
-    paddingHorizontal: 16,
   },
   image: {
     marginRight: 8,
@@ -51,8 +52,24 @@ export const styles = StyleSheet.create({
     fontSize: 13,
   },
   posts: {
-    paddingLeft: 16,
-    paddingRight: 16,
-    // flexGrow: 1,
+    flexGrow: 1,
+  },
+  buttonPlus: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: 40,
+    paddingBottom: 0,
+    paddingTop: 0,
+    borderRadius: 35,
+  },
+  exitButton: {
+    position: "absolute",
+    right: 16,
+  },
+  exitOnPostButton: {
+    position: "absolute",
+    left: 16,
   },
 });

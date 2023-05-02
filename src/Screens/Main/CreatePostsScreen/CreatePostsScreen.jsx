@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-import { Camera, CameraType } from "expo-camera";
+import { Camera } from "expo-camera";
 
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -25,7 +25,6 @@ import { styles } from "./CreatePostsScreen.styled";
 export const CreatePostScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [camera, setCamera] = useState(null);
-  const [location, setLocation] = useState(null);
   const [photo, setPhoto] = useState("");
 
   useEffect(() => {
@@ -47,19 +46,14 @@ export const CreatePostScreen = ({ navigation }) => {
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
     const location = await Location.getCurrentPositionAsync({});
-    // const location = await Location.requestPermissionsAsync({});
-
-    console.log("location latitude широта", location.coords.latitude);
-    console.log("location longitude довгота", location.coords.longitude);
 
     setPhoto(photo.uri);
-    console.log("photo", photo);
   };
 
   const sendPost = () => {
     if (photo) {
       console.log("navigation", navigation);
-      navigation.navigate("Posts", { photo });
+      navigation.navigate("DefaultPost", { photo });
     }
   };
 

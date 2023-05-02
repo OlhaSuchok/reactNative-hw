@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   exitOnPostButton: {
     position: "absolute",
-    left: 16,
+    left: 0,
   },
   title: {},
 });

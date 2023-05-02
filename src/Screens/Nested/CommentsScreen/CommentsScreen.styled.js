@@ -13,12 +13,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: 240,
-    // paddingLeft: 16,
-    // paddingRight: 16,
     backgroundColor: "#E8E8E8",
     borderWidth: 1,
     borderRadius: 8,
-    borderStyle: "solid",
     borderColor: "#E8E8E8",
     marginBottom: 8,
   },
@@ -27,8 +24,6 @@ export const styles = StyleSheet.create({
   },
   comments: {
     paddingTop: 32,
-    // paddingLeft: 16,
-    // paddingRight: 16,
   },
   button: {
     position: "relative",
