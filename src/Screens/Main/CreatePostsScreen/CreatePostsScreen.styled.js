@@ -7,7 +7,33 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
   },
-  imageButton: {
+  createPostWrapper: {
+    flexGrow: 1,
+    paddingTop: 32,
+    paddingBottom: 80,
+  },
+  cameraWrapper: {
+    position: "relative",
+    marginBottom: 8,
+    width: "100%",
+    height: 240,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderStyle: "solid",
+    borderColor: "#E8E8E8",
+  },
+  camera: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: 240,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderStyle: "solid",
+    borderColor: "#E8E8E8",
+  },
+  snapContainer: {
+    position: "absolute",
     justifyContent: "center",
     alignItems: "center",
     width: 60,
@@ -18,61 +44,52 @@ export const styles = StyleSheet.create({
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
   },
-  imageWrapper: {
+  takePhotoContainer: {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
     height: 240,
-    backgroundColor: "#E8E8E8",
-    borderWidth: 1,
-    borderRadius: 8,
-    borderStyle: "solid",
-    borderColor: "#E8E8E8",
-    marginBottom: 8,
   },
-  post: {},
-  imageTextWraper: {
+  cameraTextWrapper: {
     color: "#BDBDBD",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
     fontSize: 16,
   },
-  imageText: {
+  cameraText: {
     marginBottom: 48,
     color: "#BDBDBD",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
     fontSize: 16,
   },
-  form: {},
-  input: {
+  createPostForm: {},
+  createPostInput: {
     paddingBottom: 15,
     color: "#BDBDBD",
     fontFamily: "Roboto - regular",
     fontStyle: "normal",
     fontSize: 16,
   },
-  localityWrapper: {
+  createPostLocalityInputWrapper: {
     alignItems: "center",
     flexDirection: "row",
   },
-  localityIcon: {
+  createPostLocalityInputIcon: {
     paddingBottom: 15,
     marginRight: 4,
   },
-  footer: {},
-  navigation: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+  createPostButtonDeleteWrapper: {
     paddingTop: 10,
     paddingBottom: 32,
   },
-  buttonPlus: {
+  createPostButtonDelete: {
+    // position: "absolute",
+    // bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 42,
-    marginRight: 42,
+    marginLeft: "auto",
+    marginRight: "auto",
     width: 70,
     height: 40,
 

@@ -10,6 +10,9 @@ import {
   Platform,
   TouchableWithoutFeedback,
 } from "react-native";
+
+import { Camera, CameraType } from "expo-camera";
+
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -20,10 +23,18 @@ import { styles } from "./CreatePostsScreen.styled";
 
 export const CreatePostScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [camera, setCamera] = useState(null);
+  const [photo, setPhoto] = useState("");
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
+  };
+
+  const takePhoto = async () => {
+    const photo = await camera.takePictureAsync();
+    setPhoto(photo.uri);
+    console.log("photo", photo);
   };
 
   return (
@@ -31,74 +42,80 @@ export const CreatePostScreen = ({ navigation }) => {
       <View style={styles.container}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flexGrow: 1 }}
         >
-          <View style={styles.post}>
-            <View>
-              <View style={styles.imageWrapper}>
+          <View style={styles.createPostWrapper}>
+            <View style={styles.cameraWrapper}>
+              <Camera style={styles.camera} ref={setCamera}>
+                {photo && (
+                  <View style={styles.takePhotoContainer}>
+                    <Image
+                      source={{ uri: photo }}
+                      style={{ width: "100%", height: 240 }}
+                    />
+                  </View>
+                )}
                 <TouchableOpacity
-                  style={styles.imageButton}
+                  style={styles.snapContainer}
                   activeOpacity={0.7}
+                  onPress={takePhoto}
                 >
                   <MaterialIcons
+                    style={styles.snap}
                     name="photo-camera"
-                    size={30}
-                    color="#E8E8E8"
+                    size={28}
+                    color="#BDBDBD"
                   />
                 </TouchableOpacity>
-              </View>
-              <TouchableOpacity
-                style={styles.imageTextWraper}
-                activeOpacity={0.7}
-              >
-                <Text style={styles.imageText}>Upload a photo</Text>
-              </TouchableOpacity>
+              </Camera>
             </View>
 
-            <View style={styles.form}>
+            <TouchableOpacity
+              style={styles.cameraTextWrapper}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.cameraText}>Upload a photo</Text>
+            </TouchableOpacity>
+
+            <View style={styles.createPostForm}>
               <TextInput
-                style={styles.input}
+                style={styles.createPostInput}
                 placeholder="Name..."
-                // value={password}
-                // onChangeText={passwordHandler}
                 onFocus={() => setIsShowKeyboard(true)}
-              ></TextInput>
+              />
               <Line mt={0} mb={32} />
-              <View style={styles.localityWrapper}>
+              <View style={styles.createPostLocalityInputWrapper}>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  style={styles.localityIcon}
+                  style={styles.createPostLocalityInputIcon}
                 >
                   <MaterialIcons name="location-on" size={24} color="black" />
                 </TouchableOpacity>
                 <TextInput
-                  style={styles.input}
+                  style={styles.createPostInput}
                   placeholder="Locality..."
-                  // value={password}
-                  // onChangeText={passwordHandler}
                   onFocus={() => setIsShowKeyboard(true)}
-                ></TextInput>
+                />
               </View>
               <Line mt={0} mb={32} />
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                // onLogin={onLogin}
                 text={"PUBLISH"}
                 color={"#BDBDBD"}
                 backgroundColor={"#F6F6F6"}
                 mt={0}
-                mb={30}
+                mb={0}
               />
             </View>
           </View>
-        </KeyboardAvoidingView>
-        <View style={styles.footer}>
-          <View style={styles.navigation}>
-            <TouchableOpacity style={styles.buttonPlus} activeOpacity={0.7}>
+          <View style={styles.createPostButtonDeleteWrapper}>
+            <TouchableOpacity
+              style={styles.createPostButtonDelete}
+              activeOpacity={0.7}
+            >
               <AntDesign name="delete" size={24} color="#DADADA" />
             </TouchableOpacity>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>
   );

@@ -124,6 +124,9 @@ export const MainPostScreen = ({ navigation }) => {
               />
             </View>
           ),
+          tabBarStyle: {
+            display: "none",
+          },
         }}
       />
       <Tab.Screen

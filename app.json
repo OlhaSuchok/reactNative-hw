@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "reactNative-hw",
     "slug": "reactNative-hw",
     "version": "1.0.0",
@@ -12,7 +13,6 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
-    "jsEngine": "hermes",
     "ios": {
       "jsEngine": "jsc",
       "supportsTablet": true
