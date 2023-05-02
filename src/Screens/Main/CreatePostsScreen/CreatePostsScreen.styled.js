@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    borderStyle: "solid",
+    // borderStyle: "solid",
     borderColor: "#E8E8E8",
   },
   takePhotoContainer: {
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     height: 60,
     borderWidth: 1,
     borderRadius: 50,
-    borderStyle: "solid",
+    // borderStyle: "solid",
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
   },
@@ -80,8 +80,6 @@ export const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   createPostButtonDelete: {
-    // position: "absolute",
-    // bottom: 0,
     justifyContent: "center",
     alignItems: "center",
     marginLeft: "auto",

@@ -131,7 +131,7 @@ export const styles = StyleSheet.create({
   },
   exitButton: {
     position: "absolute",
-    right: 0,
+    right: -75,
     top: 77,
   },
 });

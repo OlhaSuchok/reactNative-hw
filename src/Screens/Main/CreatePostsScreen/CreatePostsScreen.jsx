@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as Location from "expo-location";
 import {
   View,
   Text,
@@ -24,7 +25,19 @@ import { styles } from "./CreatePostsScreen.styled";
 export const CreatePostScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [camera, setCamera] = useState(null);
+  const [location, setLocation] = useState(null);
   const [photo, setPhoto] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log("status", status);
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+    })();
+  }, []);
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
@@ -33,7 +46,13 @@ export const CreatePostScreen = ({ navigation }) => {
 
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
-    setPhoto(photo?.uri);
+    const location = await Location.getCurrentPositionAsync({});
+    // const location = await Location.requestPermissionsAsync({});
+
+    console.log("location latitude широта", location.coords.latitude);
+    console.log("location longitude довгота", location.coords.longitude);
+
+    setPhoto(photo.uri);
     console.log("photo", photo);
   };
 

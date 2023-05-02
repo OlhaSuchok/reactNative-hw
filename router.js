@@ -11,7 +11,7 @@ export const useRoute = (isAuth) => {
   if (!isAuth) {
     return (
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
@@ -20,7 +20,7 @@ export const useRoute = (isAuth) => {
           name="Register"
           component={RegistrationScreen}
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="Home"
           component={Home}

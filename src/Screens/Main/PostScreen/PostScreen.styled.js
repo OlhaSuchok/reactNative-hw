@@ -4,8 +4,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingLeft: 16,
-    paddingRight: 16,
   },
   header: {
     position: "relative",
@@ -34,6 +32,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 32,
     paddingTop: 32,
+    paddingHorizontal: 16,
   },
   image: {
     marginRight: 8,
@@ -52,6 +51,8 @@ export const styles = StyleSheet.create({
     fontSize: 13,
   },
   posts: {
-    flexGrow: 1,
+    paddingLeft: 16,
+    paddingRight: 16,
+    // flexGrow: 1,
   },
 });

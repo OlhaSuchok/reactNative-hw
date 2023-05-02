@@ -63,9 +63,7 @@ export const ProfileScreen = ({ navigation }) => {
                   />
                 </TouchableOpacity>
                 <Text style={styles.title}>Natali Romanova</Text>
-                <ScrollView style={styles.scr}>
-                  <PostItem />
-                </ScrollView>
+                <ScrollView style={styles.scr}>{/* <PostItem /> */}</ScrollView>
               </View>
             </View>
           </KeyboardAvoidingView>

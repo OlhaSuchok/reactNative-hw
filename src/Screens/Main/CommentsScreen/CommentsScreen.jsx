@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { formatDistance, subDays, format } from "date-fns";
 import {
   View,
   TouchableOpacity,
@@ -16,30 +17,30 @@ import {
 
 import { AntDesign } from "@expo/vector-icons";
 
-import { Comment } from "../../../components/Comment/Comment";
+import { CommentItem } from "../../../components/CommentItem/CommentItem";
 import { styles } from "./CommentsScreen.styled";
 
 const commentsList = [
   {
     id: 1,
     text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
-    data: Date.now().toString(),
+    data: format(Date.now(), "PPpp"),
   },
   {
     id: 2,
     text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: Date.now().toString(),
+    data: format(Date.now(), "PPpp"),
   },
-  // {
-  //   id: 3,
-  //   text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
-  //   data: Date.now().toString(),
-  // },
-  // {
-  //   id: 4,
-  //   text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-  //   data: Date.now().toString(),
-  // },
+  {
+    id: 3,
+    text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
+    data: format(Date.now(), "PPpp"),
+  },
+  {
+    id: 4,
+    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
+    data: format(Date.now(), "PPpp"),
+  },
 ];
 
 export const CommentsScreen = ({ navigation }) => {
@@ -58,6 +59,7 @@ export const CommentsScreen = ({ navigation }) => {
       {
         id: Date.now().toString(),
         text,
+        data: format(Date.now(), "PPpp"),
       },
     ]);
   };
@@ -87,10 +89,14 @@ export const CommentsScreen = ({ navigation }) => {
             <ScrollView>
               <FlatList
                 style={styles.comments}
-                keyExtractor={(item) => item.id.toString()}
                 data={comments}
+                keyExtractor={(item, index) => item.id.toString()}
                 renderItem={({ item }) => (
-                  <Comment comment={item} onRemove={removeCommen} />
+                  <CommentItem
+                    item={item}
+                    onRemove={removeCommen}
+                    navigation={navigation}
+                  />
                 )}
               />
             </ScrollView>

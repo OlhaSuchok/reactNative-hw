@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-import { styles } from "./Comment.styled";
+import { styles } from "./CommentItem.styled";
 
-export const Comment = ({ comment, onRemove }) => {
+export const CommentItem = ({ item, onRemove }) => {
   const longPressHandler = () => {
-    onRemove(comment.id);
+    onRemove(item.id);
   };
 
   return (
@@ -13,8 +13,8 @@ export const Comment = ({ comment, onRemove }) => {
       <View style={styles.commentAvatar}></View>
       <TouchableOpacity onLongPress={longPressHandler}>
         <View style={styles.commentTextWrapper}>
-          <Text style={styles.commentText}>{comment.text}</Text>
-          <Text style={styles.commentTextData}>{comment.data}</Text>
+          <Text style={styles.commentText}>{item.text}</Text>
+          <Text style={styles.commentTextData}>{item.data}</Text>
         </View>
       </TouchableOpacity>
     </View>

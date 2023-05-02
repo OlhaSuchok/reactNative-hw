@@ -8,14 +8,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "./PostItem.styled";
 
-export const PostItem = ({ comment, onRemove }) => {
+export const PostItem = ({ comment, onRemove, item, navigation }) => {
   const longPressHandler = () => {
     onRemove(comment.id);
   };
 
+  const onCommentPressHandler = () => {
+    navigation.navigate("Comments");
+  };
+
+  const onLocationPressHandler = () => {
+    navigation.navigate("Map");
+  };
+
   return (
     <View style={styles.scr}>
-      <View style={styles.postPhoto} />
+      <Image style={styles.postPhoto} source={{ uri: item.photo }} />
       <View style={styles.postDataWrapper}>
         <Text style={styles.postName}>Sunset</Text>
         <View style={styles.postData}>
@@ -24,6 +32,7 @@ export const PostItem = ({ comment, onRemove }) => {
               <TouchableOpacity
                 style={styles.postDataButton}
                 activeOpacity={0.7}
+                onPress={onCommentPressHandler}
               >
                 <FontAwesome
                   style={styles.postCommentsCountIcon}
@@ -34,7 +43,11 @@ export const PostItem = ({ comment, onRemove }) => {
               </TouchableOpacity>
               <Text style={styles.postDataText}>43</Text>
             </View>
-            <View style={{ ...styles.postInfoWrapper, marginRight: 140 }}>
+            <View
+              style={{
+                ...styles.postInfoWrapper,
+              }}
+            >
               <TouchableOpacity
                 style={styles.postDataButton}
                 activeOpacity={0.7}
@@ -49,8 +62,18 @@ export const PostItem = ({ comment, onRemove }) => {
               <Text style={styles.postDataText}>53</Text>
             </View>
           </View>
-          <View style={styles.postInfoWrapper}>
-            <TouchableOpacity style={styles.postDataButton} activeOpacity={0.7}>
+          <View
+            style={{
+              ...styles.postInfoWrapper,
+              position: "absolute",
+              right: 0,
+            }}
+          >
+            <TouchableOpacity
+              style={styles.postDataButton}
+              activeOpacity={0.7}
+              onPress={onLocationPressHandler}
+            >
               <EvilIcons
                 style={styles.postLocationIcon}
                 name="location"
