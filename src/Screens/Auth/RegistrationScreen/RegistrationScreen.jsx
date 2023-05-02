@@ -117,7 +117,7 @@ export const RegistrationScreen = ({ navigation }) => {
               </View>
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                onLogin={onLogin}
+                onPress={onLogin}
                 text={"SIGN UP"}
                 color={"#FFFFFF"}
                 backgroundColor={"#FF6C00"}

@@ -8,9 +8,13 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import { PostItem } from "../../../components/PostItem/PostItem";
 import { styles } from "./PostScreen.styled";
 
-export const PostScreen = () => {
+export const PostScreen = ({ route }) => {
+  // const { photo } = route?.params;
+
+  // console.log("photo PostScreen", photo);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const keyboardHide = () => {
@@ -32,7 +36,9 @@ export const PostScreen = () => {
             <Text style={styles.email}>email@example.com</Text>
           </View>
         </View>
-        <View style={styles.posts}></View>
+        <View style={styles.posts}>
+          <PostItem />
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

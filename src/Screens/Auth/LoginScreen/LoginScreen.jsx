@@ -89,7 +89,7 @@ export const LoginScreen = ({ navigation }) => {
               </View>
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                onLogin={onLogin}
+                onPress={onLogin}
                 text={"SIGN IN"}
                 color={"#FFFFFF"}
                 backgroundColor={"#FF6C00"}

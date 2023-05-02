@@ -33,8 +33,15 @@ export const CreatePostScreen = ({ navigation }) => {
 
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
-    setPhoto(photo.uri);
+    setPhoto(photo?.uri);
     console.log("photo", photo);
+  };
+
+  const sendPost = () => {
+    if (photo) {
+      console.log("navigation", navigation);
+      navigation.navigate("Posts", { photo });
+    }
   };
 
   return (
@@ -104,6 +111,7 @@ export const CreatePostScreen = ({ navigation }) => {
                 backgroundColor={"#F6F6F6"}
                 mt={0}
                 mb={0}
+                onPress={sendPost}
               />
             </View>
           </View>

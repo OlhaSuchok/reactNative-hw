@@ -4,8 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingHorizontal: 16,
   },
   createPostWrapper: {
     flexGrow: 1,
@@ -15,12 +14,6 @@ export const styles = StyleSheet.create({
   cameraWrapper: {
     position: "relative",
     marginBottom: 8,
-    width: "100%",
-    height: 240,
-    borderWidth: 1,
-    borderRadius: 8,
-    borderStyle: "solid",
-    borderColor: "#E8E8E8",
   },
   camera: {
     justifyContent: "center",
@@ -28,9 +21,18 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: 240,
     borderWidth: 1,
-    borderRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
     borderStyle: "solid",
     borderColor: "#E8E8E8",
+  },
+  takePhotoContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: 240,
   },
   snapContainer: {
     position: "absolute",
@@ -43,12 +45,6 @@ export const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
-  },
-  takePhotoContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: 240,
   },
   cameraTextWrapper: {
     color: "#BDBDBD",

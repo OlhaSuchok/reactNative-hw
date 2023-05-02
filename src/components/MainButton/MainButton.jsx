@@ -4,7 +4,7 @@ import { TouchableOpacity, Text } from "react-native";
 import { styles } from "./MainButton.styled";
 
 export const MainButton = ({
-  onLogin,
+  onPress,
   text,
   color,
   backgroundColor,
@@ -22,7 +22,7 @@ export const MainButton = ({
         // marginTop: isShowKeyboard ? 18 : 27,
       }}
       activeOpacity={0.7}
-      onPress={onLogin}
+      onPress={onPress}
     >
       <Text
         style={{

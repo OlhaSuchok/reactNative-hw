@@ -11,10 +11,9 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
-import { EvilIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { PostItem } from "../../../components/PostItem/PostItem";
 import { styles } from "./ProfileScreen.styled";
 
 export const ProfileScreen = ({ navigation }) => {
@@ -65,106 +64,7 @@ export const ProfileScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 <Text style={styles.title}>Natali Romanova</Text>
                 <ScrollView style={styles.scr}>
-                  <View style={styles.imageWrapper} />
-                  <View style={styles.postInfoWrapper}>
-                    <Text style={styles.postName}>Sunset</Text>
-                    <View style={styles.postInfo}>
-                      <View style={styles.postInfoWrpp}>
-                        <View style={styles.postCommentsCountWrapper}>
-                          <TouchableOpacity
-                            style={styles.postCommentsCountButton}
-                            activeOpacity={0.7}
-                          >
-                            <FontAwesome
-                              style={styles.postCommentsCountIcon}
-                              name="comment"
-                              size={24}
-                              color="#FF6C00"
-                            />
-                          </TouchableOpacity>
-                          <Text style={styles.postCommentsCountText}>43</Text>
-                        </View>
-                        <View style={styles.postCommentsLikeWrapper}>
-                          <TouchableOpacity
-                            style={styles.postLikeCountButton}
-                            activeOpacity={0.7}
-                          >
-                            <AntDesign
-                              style={styles.postLikeIcon}
-                              name="like2"
-                              size={24}
-                              color="#FF6C00"
-                            />
-                          </TouchableOpacity>
-                          <Text style={styles.postLikeCountText}>53</Text>
-                        </View>
-                      </View>
-                      <View style={styles.postLocationWrapper}>
-                        <TouchableOpacity
-                          style={styles.postLocationButton}
-                          activeOpacity={0.7}
-                        >
-                          <EvilIcons
-                            style={styles.postLocationIcon}
-                            name="location"
-                            size={28}
-                            color="#FF6C00"
-                          />
-                        </TouchableOpacity>
-                        <Text style={styles.postLocationText}>Ukraine</Text>
-                      </View>
-                    </View>
-                  </View>
-                  <View style={styles.imageWrapper} />
-                  <View style={styles.postInfoWrapper}>
-                    <Text style={styles.postName}>Sunset</Text>
-                    <View style={styles.postInfo}>
-                      <View style={styles.postInfoWrpp}>
-                        <View style={styles.postCommentsCountWrapper}>
-                          <TouchableOpacity
-                            style={styles.postCommentsCountButton}
-                            activeOpacity={0.7}
-                          >
-                            <FontAwesome
-                              style={styles.postCommentsCountIcon}
-                              name="comment"
-                              size={24}
-                              color="#FF6C00"
-                            />
-                          </TouchableOpacity>
-                          <Text style={styles.postCommentsCountText}>43</Text>
-                        </View>
-                        <View style={styles.postCommentsLikeWrapper}>
-                          <TouchableOpacity
-                            style={styles.postLikeCountButton}
-                            activeOpacity={0.7}
-                          >
-                            <AntDesign
-                              style={styles.postLikeIcon}
-                              name="like2"
-                              size={24}
-                              color="#FF6C00"
-                            />
-                          </TouchableOpacity>
-                          <Text style={styles.postLikeCountText}>53</Text>
-                        </View>
-                      </View>
-                      <View style={styles.postLocationWrapper}>
-                        <TouchableOpacity
-                          style={styles.postLocationButton}
-                          activeOpacity={0.7}
-                        >
-                          <EvilIcons
-                            style={styles.postLocationIcon}
-                            name="location"
-                            size={28}
-                            color="#FF6C00"
-                          />
-                        </TouchableOpacity>
-                        <Text style={styles.postLocationText}>Ukraine</Text>
-                      </View>
-                    </View>
-                  </View>
+                  <PostItem />
                 </ScrollView>
               </View>
             </View>
