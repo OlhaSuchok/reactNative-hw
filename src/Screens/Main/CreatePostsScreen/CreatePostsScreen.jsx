@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import { Camera } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
 
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -25,7 +26,10 @@ import { styles } from "./CreatePostsScreen.styled";
 
 export const CreatePostScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [camera, setCamera] = useState(null);
+  const [cameraRef, setCameraRef] = useState(null);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState("");
   const [location, setLocation] = useState("");
@@ -33,13 +37,25 @@ export const CreatePostScreen = ({ navigation }) => {
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      await MediaLibrary.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+
+      let location = await Location.requestForegroundPermissionsAsync();
+
+      if (location.status !== "granted") {
+        Alert("Permission to access location was denied");
         return;
       }
     })();
   }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
@@ -47,16 +63,26 @@ export const CreatePostScreen = ({ navigation }) => {
   };
 
   const takePhoto = async () => {
-    const photo = await camera.takePictureAsync();
+    if (cameraRef) {
+      const { uri } = await cameraRef.takePictureAsync();
+      await MediaLibrary.createAssetAsync(uri);
+      setPhoto(uri);
+    }
     let location = await Location.getCurrentPositionAsync({});
     const coords = {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
     };
     setLocationData(coords);
-    console.log("location рендер", location);
+  };
 
-    setPhoto(photo.uri);
+  const flipCamera = () => {
+    setType(
+      type === Camera.Constants.Type.back
+        ? Camera.Constants.Type.front
+        : Camera.Constants.Type.back
+    );
+    console.log("type", type);
   };
 
   const sendPost = () => {
@@ -82,7 +108,13 @@ export const CreatePostScreen = ({ navigation }) => {
         >
           <View style={styles.createPostWrapper}>
             <View style={styles.cameraWrapper}>
-              <Camera style={styles.camera} ref={setCamera}>
+              <Camera
+                style={styles.camera}
+                type={type}
+                ref={(ref) => {
+                  setCameraRef(ref);
+                }}
+              >
                 {photo && (
                   <View style={styles.takePhotoContainer}>
                     <Image
@@ -100,6 +132,17 @@ export const CreatePostScreen = ({ navigation }) => {
                     style={styles.snap}
                     name="photo-camera"
                     size={28}
+                    color="#BDBDBD"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={styles.flipContainer}
+                  onPress={flipCamera}
+                >
+                  <MaterialIcons
+                    name="flip-camera-android"
+                    size={24}
                     color="#BDBDBD"
                   />
                 </TouchableOpacity>

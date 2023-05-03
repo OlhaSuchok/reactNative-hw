@@ -29,7 +29,6 @@ export const styles = StyleSheet.create({
   },
   takePhotoContainer: {
     justifyContent: "center",
-    alignItems: "center",
     width: "100%",
     height: 240,
   },
@@ -43,6 +42,11 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: "transparent",
     backgroundColor: "#FFFFFF",
+  },
+  flipContainer: {
+    position: "absolute",
+    right: 15,
+    bottom: 15,
   },
   cameraTextWrapper: {
     color: "#BDBDBD",
