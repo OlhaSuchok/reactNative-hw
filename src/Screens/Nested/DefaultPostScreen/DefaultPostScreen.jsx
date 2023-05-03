@@ -26,8 +26,7 @@ export const DefaultPostScreen = ({ route, navigation }) => {
           photo: photo,
           location: location,
           locationData: {
-            latitude: locationData.coords.latitude,
-            longitude: locationData.coords.longitude,
+            ...locationData,
           },
         },
       ]);

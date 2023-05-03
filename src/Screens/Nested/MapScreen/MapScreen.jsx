@@ -4,22 +4,24 @@ import { View } from "react-native";
 
 import { styles } from "./MapScreen.styled";
 
-export const MapScreen = () => {
+export const MapScreen = ({ route }) => {
+  const { locationData } = route.params;
+
+  console.log("location карта", locationData);
   return (
     <View style={styles.container}>
       <MapView
         style={styles.mapWrapper}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+        region={{
+          ...locationData,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        showsUserLocation={true}
       >
-        <Marker
-          coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
-          title="Travel photo"
-        />
+        {locationData && (
+          <Marker coordinate={locationData} title="Travel photo" />
+        )}
       </MapView>
     </View>
   );

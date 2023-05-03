@@ -48,10 +48,15 @@ export const CreatePostScreen = ({ navigation }) => {
 
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
-    const locationData = await Location.getCurrentPositionAsync({});
+    let location = await Location.getCurrentPositionAsync({});
+    const coords = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    };
+    setLocationData(coords);
+    console.log("location рендер", location);
 
     setPhoto(photo.uri);
-    setLocationData(locationData);
   };
 
   const sendPost = () => {

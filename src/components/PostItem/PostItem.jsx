@@ -13,7 +13,8 @@ export const PostItem = ({ item, navigation }) => {
   };
 
   const onLocationPressHandler = () => {
-    navigation.navigate("Map");
+    const { locationData } = item;
+    navigation.navigate("Map", { locationData });
   };
 
   return (
