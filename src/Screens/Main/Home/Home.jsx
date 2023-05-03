@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -8,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { CommentsScreen } from "../../Nested/CommentsScreen/CommentsScreen";
 import { PostScreen } from "../PostScreen/PostScreen";
+import { DefaultPostScreen } from "../../Nested/DefaultPostScreen/DefaultPostScreen";
 import { MapScreen } from "../../Nested/MapScreen/MapScreen";
 
 import { styles } from "./Home.styled";
@@ -36,6 +38,19 @@ export const Home = ({ navigation }) => {
         component={PostScreen}
         options={{
           headerShown: false,
+          // headerRight: () => (
+          //   <TouchableOpacity
+          //     style={styles.exitButton}
+          //     activeOpacity={0.7}
+          //     onPress={() => navigation.navigate("Login")}
+          //   >
+          //     <MaterialCommunityIcons
+          //       name="exit-to-app"
+          //       size={28}
+          //       color="#BDBDBD"
+          //     />
+          //   </TouchableOpacity>
+          // ),
           tabBarIcon: ({ focused, color, size }) => (
             <View
               style={{

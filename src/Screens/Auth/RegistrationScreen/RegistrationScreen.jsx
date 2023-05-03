@@ -11,37 +11,61 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
 
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { styles } from "./RegistrationScreen.styled";
 
+import {
+  authSignUpUser,
+  authSignInUser,
+  authSignOutUser,
+} from "../../../../redux/auth/authOperations";
+
+const initialState = {
+  email: "",
+  password: "",
+  nickname: "",
+};
+
 export const RegistrationScreen = ({ navigation }) => {
-  console.log("navigation register", navigation);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [nickname, setNickname] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
-  const nameHandler = (text) => setName(text);
-  const emailHandler = (text) => setEmail(text);
-  const passwordHandler = (text) => setPassword(text);
+  const dispatch = useDispatch();
 
-  const onLogin = () => {
-    if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
+  // const nicknameHandler = (text) => setNickname(text);
+  // const emailHandler = (text) => setEmail(text);
+  // const passwordHandler = (text) => setPassword(text);
+  const nicknameHandler = (value) =>
+    setState((prevState) => ({ ...prevState, nickname: value }));
+  const emailHandler = (value) =>
+    setState((prevState) => ({ ...prevState, email: value }));
+  const passwordHandler = (value) =>
+    setState((prevState) => ({ ...prevState, password: value }));
+
+  const handleSubmit = () => {
+    console.log("state", state);
+    if (
+      state.nickname.trim() === "" ||
+      state.email.trim() === "" ||
+      state.password.trim() === ""
+    ) {
       Alert.alert("Fill in all fields!");
     } else {
-      Alert.alert("Welcome,", `${name}!`);
+      Alert.alert("Welcome,", `${state.nickname}!`);
 
-      console.log(
-        `'name:', ${name}, 'email:', ${email}, 'password:', ${password},`
-      );
-
-      navigation.navigate("Home");
-      setName("");
-      setEmail("");
-      setPassword("");
+      dispatch(authSignUpUser(state));
+      // navigation.navigate("Home");
+      // setNickname("");
+      // setEmail("");
+      // setPassword("");
+      setState(initialState);
     }
   };
 
@@ -84,15 +108,17 @@ export const RegistrationScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Name"
-                value={name}
-                onChangeText={nameHandler}
+                // value={nickname}
+                value={state.nickname}
+                onChangeText={nicknameHandler}
                 onFocus={() => setIsShowKeyboard(true)}
                 maxLength={20}
               ></TextInput>
               <TextInput
                 style={styles.input}
                 placeholder="Email"
-                value={email}
+                // value={email}
+                value={state.email}
                 onChangeText={emailHandler}
                 onFocus={() => setIsShowKeyboard(true)}
                 maxLength={20}
@@ -101,7 +127,8 @@ export const RegistrationScreen = ({ navigation }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
-                  value={password}
+                  // value={password}
+                  value={state.password}
                   onChangeText={passwordHandler}
                   secureTextEntry={showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
@@ -117,7 +144,7 @@ export const RegistrationScreen = ({ navigation }) => {
               </View>
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                onPress={onLogin}
+                onPress={handleSubmit}
                 text={"SIGN UP"}
                 color={"#FFFFFF"}
                 backgroundColor={"#FF6C00"}

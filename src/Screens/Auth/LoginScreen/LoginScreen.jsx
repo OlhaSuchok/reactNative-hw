@@ -12,28 +12,49 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import { useDispatch } from "react-redux";
+
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { styles } from "./LoginScreen.styled";
 
+import {
+  authSignUpUser,
+  authSignInUser,
+  authSignOutUser,
+} from "../../../../redux/auth/authOperations";
+
+const initialState = {
+  email: "",
+  password: "",
+};
+
 export const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
-  const emailHandler = (text) => setEmail(text);
-  const passwordHandler = (text) => setPassword(text);
+  const dispatch = useDispatch();
 
-  const onLogin = () => {
-    if (email.trim() === "" || password.trim() === "") {
+  // const emailHandler = (text) => setEmail(text);
+  // const passwordHandler = (text) => setPassword(text);
+
+  const emailHandler = (value) =>
+    setState((prevState) => ({ ...prevState, email: value }));
+  const passwordHandler = (value) =>
+    setState((prevState) => ({ ...prevState, password: value }));
+
+  const handleSubmit = () => {
+    if (state.email.trim() === "" || state.password.trim() === "") {
       Alert.alert("Fill in all fields!");
     } else {
       Alert.alert("Hello!");
+      console.log("state LoginScreen", state);
 
-      console.log(`'email:', ${email}, 'password:', ${password},`);
-      navigation.navigate("Home");
-      setEmail("");
-      setPassword("");
+      dispatch(authSignInUser(state));
+      setState(initialState);
+      // navigation.navigate("Home");
     }
   };
 
@@ -62,7 +83,7 @@ export const LoginScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Email"
-                value={email}
+                value={state.email}
                 onChangeText={emailHandler}
                 onFocus={() => setIsShowKeyboard(true)}
               ></TextInput>
@@ -70,7 +91,7 @@ export const LoginScreen = ({ navigation }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
-                  value={password}
+                  value={state.password}
                   onChangeText={passwordHandler}
                   secureTextEntry={showPassword}
                   onFocus={() => setIsShowKeyboard(true)}
@@ -89,7 +110,7 @@ export const LoginScreen = ({ navigation }) => {
               </View>
               <MainButton
                 isShowKeyboard={isShowKeyboard}
-                onPress={onLogin}
+                onPress={handleSubmit}
                 text={"SIGN IN"}
                 color={"#FFFFFF"}
                 backgroundColor={"#FF6C00"}
