@@ -46,4 +46,6 @@ export const authSignInUser = (data) => async (dispatch, getState) => {
 };
 
 export const authSignOutUser = () => async (dispatch, getState) => {};
-export const authStateChangeUser = () => async (dispatch, getState) => {};
+export const authStateChangeUser = () => async (dispatch, getState) => {
+  await auth.onAuthStateChanged((user) => setUser(user));
+};
