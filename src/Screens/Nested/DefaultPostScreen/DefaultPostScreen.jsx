@@ -8,6 +8,16 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import {
+  collection,
+  onSnapshot,
+  query,
+  doc,
+  getCountFromServer,
+} from "firebase/firestore";
+
+import { db } from "../../../../firebase/config";
+
 import { PostItem } from "../../../components/PostItem/PostItem";
 import { styles } from "./DefaultPostScreen.styled";
 
@@ -15,23 +25,37 @@ export const DefaultPostScreen = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
-  useEffect(() => {
-    if (route.params) {
-      const { photo, title, location, locationData } = route.params;
-      setPosts((prevState) => [
-        ...prevState,
-        {
-          id: Date.now().toString(),
-          title: title,
-          photo: photo,
-          location: location,
-          locationData: {
-            ...locationData,
-          },
-        },
-      ]);
+  const getAllPosts = async () => {
+    try {
+      const q = query(collection(db, "posts"));
+
+      onSnapshot(q, async (querySnapshot) => {
+        const posts = await Promise.all(
+          querySnapshot.docs.map(async (doc) => {
+            const coll = collection(db, `posts/${doc.id}/comments`);
+            const snapshot = await getCountFromServer(coll);
+
+            return {
+              ...doc.data(),
+              postId: doc.id,
+              commentCount: snapshot.data().count,
+            };
+          })
+        );
+
+        setPosts(posts);
+      });
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
-  }, [route.params]);
+  };
+
+  console.log("posts", posts);
+
+  useEffect(() => {
+    getAllPosts();
+    console.log("posts useEffect", posts);
+  }, []);
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);

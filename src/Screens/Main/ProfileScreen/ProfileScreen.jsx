@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   ScrollView,
+  FlatList,
   TouchableOpacity,
   ImageBackground,
   Platform,
@@ -16,24 +17,65 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { authSignOutUser } from "../../../../redux/auth/authOperations";
 import { useDispatch } from "react-redux";
 
+import { db } from "../../../../firebase/config";
+import {
+  collection,
+  onSnapshot,
+  query,
+  doc,
+  getCountFromServer,
+  addDoc,
+  where,
+} from "firebase/firestore";
+
+import { useSelector } from "react-redux";
+
 import { PostItem } from "../../../components/PostItem/PostItem";
 import { styles } from "./ProfileScreen.styled";
 
 export const ProfileScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [photo, setPhoto] = useState("");
+
+  const { userName, userId } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
   const signOut = () => {
-    console.log("працює signOut в ProfileScreen перед dispatch");
     dispatch(authSignOutUser());
-    console.log("працює signOut в ProfileScreen після dispatch");
   };
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
   };
+
+  const getUserPosts = async () => {
+    const postsRef = collection(db, "posts");
+    const q = query(postsRef, where("userId", "==", userId));
+
+    onSnapshot(q, async (querySnapshot) => {
+      const posts = await Promise.all(
+        querySnapshot.docs.map(async (doc) => {
+          const coll = collection(db, `posts/${doc.id}/comments`);
+          const snapshot = await getCountFromServer(coll);
+
+          return {
+            ...doc.data(),
+            postId: doc.id,
+            commentCount: snapshot.data().count,
+          };
+        })
+      );
+
+      setPosts(posts);
+    });
+  };
+
+  useEffect(() => {
+    getUserPosts();
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -75,7 +117,17 @@ export const ProfileScreen = ({ navigation }) => {
                   />
                 </TouchableOpacity>
                 <Text style={styles.title}>Natali Romanova</Text>
-                <ScrollView style={styles.scr}>{/* <PostItem /> */}</ScrollView>
+                {/* <ScrollView style={styles.scr}> */}
+                <FlatList
+                  style={styles.scr}
+                  data={posts}
+                  keyExtractor={(item, index) => item.postId}
+                  // keyExtractor={(item, index) => index}
+                  renderItem={({ item }) => (
+                    <PostItem item={item} navigation={navigation} />
+                  )}
+                />
+                {/* </ScrollView> */}
               </View>
             </View>
           </KeyboardAvoidingView>

@@ -9,7 +9,7 @@ import { styles } from "./PostItem.styled";
 
 export const PostItem = ({ item, navigation }) => {
   const onCommentPressHandler = () => {
-    navigation.navigate("Comments");
+    navigation.navigate("Comments", { postId: item.postId });
   };
 
   const onLocationPressHandler = () => {

@@ -5,22 +5,23 @@ import { View } from "react-native";
 import { styles } from "./MapScreen.styled";
 
 export const MapScreen = ({ route }) => {
-  const { locationData } = route.params;
+  const { longitude, latitude } = route.params.locationData;
 
-  console.log("location карта", locationData);
+  console.log("location карта", latitude, longitude);
   return (
     <View style={styles.container}>
       <MapView
         style={styles.mapWrapper}
         region={{
-          ...locationData,
+          longitude,
+          latitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
         showsUserLocation={true}
       >
-        {locationData && (
-          <Marker coordinate={locationData} title="Travel photo" />
+        {route.params.locationData && (
+          <Marker coordinate={{ longitude, latitude }} title="Travel photo" />
         )}
       </MapView>
     </View>

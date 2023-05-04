@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import {
   View,
@@ -9,61 +9,77 @@ import {
   Platform,
   FlatList,
   Alert,
+  SafeAreaView,
   TouchableWithoutFeedback,
   ScrollView,
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
+import { db } from "../../../../firebase/config";
+import {
+  collection,
+  onSnapshot,
+  query,
+  doc,
+  getCountFromServer,
+  addDoc,
+} from "firebase/firestore";
+
+import { useSelector } from "react-redux";
 
 import { CommentItem } from "../../../components/CommentItem/CommentItem";
 import { styles } from "./CommentsScreen.styled";
+// import { SafeAreaView } from "react-native";
 
-const commentsList = [
-  {
-    id: 1,
-    text: "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love sometips!",
-    data: format(Date.now(), "PPpp"),
-  },
-  {
-    id: 2,
-    text: "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
-    data: format(Date.now(), "PPpp"),
-  },
-];
+export const CommentsScreen = ({ navigation, route }) => {
+  const { postId } = route.params;
+  const { userName } = useSelector((state) => state.auth);
 
-export const CommentsScreen = ({ navigation }) => {
-  const [comments, setComments] = useState(commentsList);
-  const [value, setValue] = useState("");
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const createComment = async () => {
+    try {
+      await addDoc(collection(db, `posts/${postId}/comments`), {
+        comment,
+        userName,
+        data: format(Date.now(), "PPpp"),
+        // avatar,
+        // created: Timestamp.fromDate(new Date()),
+      });
+
+      // Keyboard.dismiss();
+      setComment("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
     Keyboard.dismiss();
   };
 
-  const addComment = (text) => {
-    setComments((prevComments) => [
-      ...prevComments,
-      {
-        id: Date.now().toString(),
-        text,
-        data: format(Date.now(), "PPpp"),
-      },
-    ]);
-  };
-
-  const pressHandler = (text) => {
-    if (value.trim()) {
-      addComment(value);
-      setValue("");
-    } else {
-      Alert.alert("Введіть коментарій");
-    }
+  const getComments = () => {
+    const q = query(collection(db, `posts/${postId}/comments`));
+    onSnapshot(q, (querySnapshot) => {
+      const comments = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        commentId: doc.id,
+      }));
+      setComments(comments);
+    });
   };
 
   const removeCommen = (id) => {
     setComments((prev) => prev.filter((item) => item.id !== id));
   };
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
@@ -72,12 +88,13 @@ export const CommentsScreen = ({ navigation }) => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flexGrow: 1, paddingTop: 32 }}
         >
-          <View style={styles.commentsWrp}>
+          <SafeAreaView style={styles.commentsWrp}>
             <View style={styles.imageWrapper}></View>
             <FlatList
               style={styles.comments}
               data={comments}
-              keyExtractor={(item, index) => item.id.toString()}
+              keyExtractor={(item, index) => item.commentId}
+              // keyExtractor={(item, index) => index}
               renderItem={({ item }) => (
                 <CommentItem
                   item={item}
@@ -86,19 +103,20 @@ export const CommentsScreen = ({ navigation }) => {
                 />
               )}
             />
-          </View>
+          </SafeAreaView>
           <View style={styles.button}>
             <TextInput
               placeholder="Comment..."
-              onChangeText={setValue}
-              value={value}
+              onChangeText={setComment}
+              value={comment}
               onFocus={() => setIsShowKeyboard(true)}
             ></TextInput>
             <TouchableOpacity
               style={styles.buttonSend}
               activeOpacity={0.7}
-              onPress={pressHandler}
-              onSubmit={addComment}
+              // onPress={pressHandler}
+              // onSubmit={createComment}
+              onPress={createComment}
             >
               <AntDesign name="arrowup" size={22} color="#FFFFFF" />
             </TouchableOpacity>

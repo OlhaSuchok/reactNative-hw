@@ -13,11 +13,19 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+// import { nanoid } from "nanoid";
+import { uploadPhoto } from "../../../../firebase/uploadPhoto";
+
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+
+import { useSelector } from "react-redux";
+
+import { db } from "../../../../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { Line } from "../../../components/Line/Line";
@@ -34,6 +42,8 @@ export const CreatePostScreen = ({ navigation }) => {
   const [photo, setPhoto] = useState("");
   const [location, setLocation] = useState("");
   const [locationData, setLocationData] = useState("");
+
+  const { userId, userName } = useSelector((state) => state.auth);
 
   useEffect(() => {
     (async () => {
@@ -85,17 +95,65 @@ export const CreatePostScreen = ({ navigation }) => {
     console.log("type", type);
   };
 
-  const sendPost = () => {
+  const uploadPostToServer = async () => {
+    const url = await uploadPhoto(photo, "images");
+    try {
+      // await addDoc(collection(db, "posts"), {
+      //   userId: userId,
+      //   userName: userName,
+      //   photo: url,
+      //   title: title,
+      //   location: location,
+      //   locationData: locationData,
+      // });
+
+      // await addDoc(collection(db, "users"), {
+      //   userId: userId,
+      //   userName: userName,
+      //   photo: url,
+      //   title: title,
+      //   location: location,
+      //   locationData: locationData,
+      // });
+
+      const docRef = await addDoc(collection(db, "posts"), {
+        userId: userId,
+        userName: userName,
+        photo: url,
+        title: title,
+        location: location,
+        locationData: locationData,
+      });
+
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  const sendPost = async () => {
+    console.log("locationData", locationData);
+    console.log("title", title);
+    console.log("photo", photo);
+
     if (!photo || !title || !location) {
       return Alert.alert("Fill in all fields");
     }
 
-    navigation.navigate("DefaultPost", {
-      photo,
-      title,
-      location,
-      locationData,
-    });
+    // const url = await uploadPhoto(photo, "images");
+    // await addDoc(collection(db, "posts"), {
+    //   photo: url,
+    // });
+
+    await uploadPostToServer();
+
+    // navigation.navigate("DefaultPost", {
+    //   photo,
+    //   title,
+    //   location,
+    //   locationData,
+    // });
+    navigation.navigate("DefaultPost");
     setTitle("");
     setLocation("");
   };

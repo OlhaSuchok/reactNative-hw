@@ -5,7 +5,7 @@ import { styles } from "./CommentItem.styled";
 
 export const CommentItem = ({ item, onRemove }) => {
   const longPressHandler = () => {
-    onRemove(item.id);
+    // onRemove(item.commentId);
   };
 
   return (
@@ -13,7 +13,7 @@ export const CommentItem = ({ item, onRemove }) => {
       <View style={styles.commentAvatar}></View>
       <TouchableOpacity onLongPress={longPressHandler}>
         <View style={styles.commentTextWrapper}>
-          <Text style={styles.commentText}>{item.text}</Text>
+          <Text style={styles.commentText}>{item.comment}</Text>
           <Text style={styles.commentTextData}>{item.data}</Text>
         </View>
       </TouchableOpacity>
