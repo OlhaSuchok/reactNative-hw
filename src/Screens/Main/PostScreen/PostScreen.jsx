@@ -7,6 +7,9 @@ import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
+import { useDispatch } from "react-redux";
+import { authSignOutUser } from "../../../../redux/auth/authOperations";
+
 import { DefaultPostScreen } from "../../Nested/DefaultPostScreen/DefaultPostScreen";
 import { CreatePostScreen } from "../CreatePostsScreen/CreatePostsScreen";
 import { ProfileScreen } from "../ProfileScreen/ProfileScreen";
@@ -16,6 +19,14 @@ import { styles } from "./PostScreen.styled";
 const Tab = createBottomTabNavigator();
 
 export const PostScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    console.log("працює signOut в PostScreen перед dispatch");
+    dispatch(authSignOutUser());
+    console.log("працює signOut в PostScreen після dispatch");
+  };
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -51,7 +62,7 @@ export const PostScreen = ({ navigation }) => {
             <TouchableOpacity
               style={styles.exitButton}
               activeOpacity={0.7}
-              onPress={() => navigation.navigate("Login")}
+              onPress={signOut}
             >
               <MaterialCommunityIcons
                 name="exit-to-app"

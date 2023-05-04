@@ -13,11 +13,22 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { authSignOutUser } from "../../../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
+
 import { PostItem } from "../../../components/PostItem/PostItem";
 import { styles } from "./ProfileScreen.styled";
 
 export const ProfileScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    console.log("працює signOut в ProfileScreen перед dispatch");
+    dispatch(authSignOutUser());
+    console.log("працює signOut в ProfileScreen після dispatch");
+  };
 
   const keyboardHide = () => {
     setIsShowKeyboard(true);
@@ -54,7 +65,8 @@ export const ProfileScreen = ({ navigation }) => {
                 <TouchableOpacity
                   style={styles.exitButton}
                   activeOpacity={0.7}
-                  onPress={() => navigation.navigate("Login")}
+                  // onPress={() => navigation.navigate("Login")}
+                  onPress={signOut}
                 >
                   <MaterialCommunityIcons
                     name="exit-to-app"

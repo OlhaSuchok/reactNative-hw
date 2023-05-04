@@ -17,11 +17,7 @@ import { useDispatch } from "react-redux";
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { styles } from "./LoginScreen.styled";
 
-import {
-  authSignUpUser,
-  authSignInUser,
-  authSignOutUser,
-} from "../../../../redux/auth/authOperations";
+import { authSignInUser } from "../../../../redux/auth/authOperations";
 
 const initialState = {
   email: "",
@@ -29,16 +25,11 @@ const initialState = {
 };
 
 export const LoginScreen = ({ navigation }) => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const dispatch = useDispatch();
-
-  // const emailHandler = (text) => setEmail(text);
-  // const passwordHandler = (text) => setPassword(text);
 
   const emailHandler = (value) =>
     setState((prevState) => ({ ...prevState, email: value }));
@@ -54,7 +45,6 @@ export const LoginScreen = ({ navigation }) => {
 
       dispatch(authSignInUser(state));
       setState(initialState);
-      // navigation.navigate("Home");
     }
   };
 

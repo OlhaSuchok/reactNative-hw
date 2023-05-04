@@ -7,10 +7,10 @@ import { Home } from "./src/Screens/Main/Home/Home";
 
 const Stack = createStackNavigator();
 
-export const useRoute = (user) => {
-  if (!user) {
+export const useRoute = (isAuth) => {
+  if (!isAuth) {
     return (
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator>
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -21,11 +21,6 @@ export const useRoute = (user) => {
           component={RegistrationScreen}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        /> */}
       </Stack.Navigator>
     );
   }

@@ -17,11 +17,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { MainButton } from "../../../components/MainButton/MainButton";
 import { styles } from "./RegistrationScreen.styled";
 
-import {
-  authSignUpUser,
-  authSignInUser,
-  authSignOutUser,
-} from "../../../../redux/auth/authOperations";
+import { authSignUpUser } from "../../../../redux/auth/authOperations";
 
 const initialState = {
   email: "",
@@ -30,18 +26,11 @@ const initialState = {
 };
 
 export const RegistrationScreen = ({ navigation }) => {
-  // const [nickname, setNickname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const dispatch = useDispatch();
-
-  // const nicknameHandler = (text) => setNickname(text);
-  // const emailHandler = (text) => setEmail(text);
-  // const passwordHandler = (text) => setPassword(text);
   const nicknameHandler = (value) =>
     setState((prevState) => ({ ...prevState, nickname: value }));
   const emailHandler = (value) =>
@@ -61,10 +50,6 @@ export const RegistrationScreen = ({ navigation }) => {
       Alert.alert("Welcome,", `${state.nickname}!`);
 
       dispatch(authSignUpUser(state));
-      // navigation.navigate("Home");
-      // setNickname("");
-      // setEmail("");
-      // setPassword("");
       setState(initialState);
     }
   };
@@ -108,7 +93,6 @@ export const RegistrationScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Name"
-                // value={nickname}
                 value={state.nickname}
                 onChangeText={nicknameHandler}
                 onFocus={() => setIsShowKeyboard(true)}
@@ -117,7 +101,6 @@ export const RegistrationScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="Email"
-                // value={email}
                 value={state.email}
                 onChangeText={emailHandler}
                 onFocus={() => setIsShowKeyboard(true)}
@@ -127,7 +110,6 @@ export const RegistrationScreen = ({ navigation }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
-                  // value={password}
                   value={state.password}
                   onChangeText={passwordHandler}
                   secureTextEntry={showPassword}
