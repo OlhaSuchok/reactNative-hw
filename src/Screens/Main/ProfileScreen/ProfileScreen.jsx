@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  ScrollView,
   FlatList,
   TouchableOpacity,
   ImageBackground,
@@ -22,9 +21,7 @@ import {
   collection,
   onSnapshot,
   query,
-  doc,
   getCountFromServer,
-  addDoc,
   where,
 } from "firebase/firestore";
 
@@ -36,9 +33,8 @@ import { styles } from "./ProfileScreen.styled";
 export const ProfileScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [photo, setPhoto] = useState("");
 
-  const { userName, userId } = useSelector((state) => state.auth);
+  const { userId } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -107,7 +103,6 @@ export const ProfileScreen = ({ navigation }) => {
                 <TouchableOpacity
                   style={styles.exitButton}
                   activeOpacity={0.7}
-                  // onPress={() => navigation.navigate("Login")}
                   onPress={signOut}
                 >
                   <MaterialCommunityIcons
@@ -117,17 +112,14 @@ export const ProfileScreen = ({ navigation }) => {
                   />
                 </TouchableOpacity>
                 <Text style={styles.title}>Natali Romanova</Text>
-                {/* <ScrollView style={styles.scr}> */}
                 <FlatList
                   style={styles.scr}
                   data={posts}
                   keyExtractor={(item, index) => item.postId}
-                  // keyExtractor={(item, index) => index}
                   renderItem={({ item }) => (
                     <PostItem item={item} navigation={navigation} />
                   )}
                 />
-                {/* </ScrollView> */}
               </View>
             </View>
           </KeyboardAvoidingView>

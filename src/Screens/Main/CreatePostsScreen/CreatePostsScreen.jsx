@@ -13,7 +13,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-// import { nanoid } from "nanoid";
 import { uploadPhoto } from "../../../../firebase/uploadPhoto";
 
 import { Camera } from "expo-camera";
@@ -98,24 +97,6 @@ export const CreatePostScreen = ({ navigation }) => {
   const uploadPostToServer = async () => {
     const url = await uploadPhoto(photo, "images");
     try {
-      // await addDoc(collection(db, "posts"), {
-      //   userId: userId,
-      //   userName: userName,
-      //   photo: url,
-      //   title: title,
-      //   location: location,
-      //   locationData: locationData,
-      // });
-
-      // await addDoc(collection(db, "users"), {
-      //   userId: userId,
-      //   userName: userName,
-      //   photo: url,
-      //   title: title,
-      //   location: location,
-      //   locationData: locationData,
-      // });
-
       const docRef = await addDoc(collection(db, "posts"), {
         userId: userId,
         userName: userName,
@@ -140,19 +121,8 @@ export const CreatePostScreen = ({ navigation }) => {
       return Alert.alert("Fill in all fields");
     }
 
-    // const url = await uploadPhoto(photo, "images");
-    // await addDoc(collection(db, "posts"), {
-    //   photo: url,
-    // });
-
     await uploadPostToServer();
 
-    // navigation.navigate("DefaultPost", {
-    //   photo,
-    //   title,
-    //   location,
-    //   locationData,
-    // });
     navigation.navigate("DefaultPost");
     setTitle("");
     setLocation("");

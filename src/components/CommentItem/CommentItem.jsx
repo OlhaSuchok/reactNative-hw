@@ -4,9 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./CommentItem.styled";
 
 export const CommentItem = ({ item, onRemove }) => {
-  const longPressHandler = () => {
-    // onRemove(item.commentId);
-  };
+  const longPressHandler = () => {};
 
   return (
     <View style={styles.comment}>

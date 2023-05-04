@@ -55,8 +55,6 @@ export const styles = StyleSheet.create({
     fontSize: 30,
   },
   imageWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
     width: "100%",
     height: 240,
     backgroundColor: "#E8E8E8",

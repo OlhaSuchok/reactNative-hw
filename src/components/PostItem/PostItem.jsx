@@ -9,7 +9,7 @@ import { styles } from "./PostItem.styled";
 
 export const PostItem = ({ item, navigation }) => {
   const onCommentPressHandler = () => {
-    navigation.navigate("Comments", { postId: item.postId });
+    navigation.navigate("Comments", { photo: item.photo, postId: item.postId });
   };
 
   const onLocationPressHandler = () => {
@@ -37,7 +37,7 @@ export const PostItem = ({ item, navigation }) => {
                   color="#FF6C00"
                 />
               </TouchableOpacity>
-              <Text style={styles.postDataText}>43</Text>
+              <Text style={styles.postDataText}>{item.commentCount}</Text>
             </View>
             <View
               style={{
@@ -55,7 +55,7 @@ export const PostItem = ({ item, navigation }) => {
                   color="#FF6C00"
                 />
               </TouchableOpacity>
-              <Text style={styles.postDataText}>53</Text>
+              <Text style={styles.postDataText}>{item.commentCount}</Text>
             </View>
           </View>
           <View

@@ -22,9 +22,7 @@ export const PostScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const signOut = () => {
-    console.log("працює signOut в PostScreen перед dispatch");
     dispatch(authSignOutUser());
-    console.log("працює signOut в PostScreen після dispatch");
   };
 
   return (
